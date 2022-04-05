@@ -2,13 +2,16 @@ package main
 
 import (
 	"fmt"
-	"lem-in/function"
+	"lemin/function"
 	"strconv"
 )
 
+// adjacency list graph - list that hold verteces
 type Graph struct {
 	Vertices map[string]*Vertex
 }
+
+// graph vertex
 
 type Vertex struct {
 	Name     string
@@ -26,7 +29,9 @@ func Contains(s map[string]*Vertex, room string) bool { // check that their is n
 	}
 	return false
 }
-func (g *Graph) AddVertex(name string, x, y int) { // Add vertex
+
+// Add vertex to the graph
+func (g *Graph) AddVertex(name string, x, y int) {
 	if !(Contains(g.Vertices, name)) {
 		g.Vertices[name] = &Vertex{
 			Name:     name,
@@ -38,7 +43,7 @@ func (g *Graph) AddVertex(name string, x, y int) { // Add vertex
 	}
 }
 func (g *Graph) AddEdge(from, to string) {
-	fromVertex := g.GetVertex(from)
+	fromVertex := g.GetVertex(from) // finding adress of the vertex
 	toVertex := g.GetVertex(to)
 	fromVertex.Adjacent[toVertex.Name] = toVertex
 }
